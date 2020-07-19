@@ -1,0 +1,41 @@
+<section class="gh-canvas js-settings-content">
+    <GhCanvasHeader class="gh-canvas-header">
+        <h2>{{@model.total}} Competition sign ups</h2>
+    </GhCanvasHeader>
+    <section class="view-container">
+        <section class="gh-env-details">
+            <ol class="gh-list">
+                <li class="gh-list-row header">
+                    <div class="gh-list-header">Athlete</div>
+                </li>
+                {{#each @model.registrations as |registration|}}
+
+                <li class="gh-list-row gh-posts-list-item ember-view gh-list-row ">
+
+                    <a class="gh-list-data">
+                        <h3 class="gh-content-entry-title">{{registration.firstName}} {{registration.lastName}}</h3>
+                        <p>
+                            <span class="gh-content-entry-meta">
+                                {{registration.dateOfBirth}}
+                            </span>
+                        </p>
+                    </a>
+                </li>
+                {{/each}}
+            </ol>
+
+        </section>
+        <section>
+            {{#if @model.prevPage}}
+            <LinkTo @route="competitions" @query={{ @model.prevPage }} data-test-nav="competitions">
+                Prev</LinkTo>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{/if}}
+
+            {{#if @model.nextPage}}
+            <LinkTo @route="competitions" @query={{ @model.nextPage }} data-test-nav="competitions">
+                Next</LinkTo>
+            {{/if}}
+        </section>
+    </section>
+</section>
